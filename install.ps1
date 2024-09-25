@@ -2,7 +2,7 @@
 
 Write-Output "Installing Spotify modfied by SpotX..."
 
-iex ""& { $(iwr -useb 'https://raw.githubusercontent.com/SpotX-Official/spotx-official.github.io/main/run.ps1') } -new_theme""
+iex "& { $(iwr -useb 'https://raw.githubusercontent.com/SpotX-Official/spotx-official.github.io/main/run.ps1') } -new_theme"
 
 Write-Output "Installing Spicetify..."
 
