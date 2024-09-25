@@ -1,7 +1,8 @@
 ## SpotX & Spicetify & some fix
 
 ```PowerShell
-iwr -useb https://spicetify.zgqinc.gq/install.ps1 | iex```
+iwr -useb https://spicetify.zgqinc.gq/install.ps1 | iex
+```
 
 Include some fix by me.
 
