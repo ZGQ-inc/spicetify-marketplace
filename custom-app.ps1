@@ -18,4 +18,5 @@ Write-Output "success mv stats custom app."
 
 spicetify config custom_apps stats
 spicetify config custom_apps lyrics-plus
+spicetify config sidebar_config 0
 spicetify apply
