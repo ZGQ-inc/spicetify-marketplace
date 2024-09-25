@@ -1,0 +1,59 @@
+/* Better-connect-bar Make connect bar a better look. */
+.main-connectBar-connectBar {
+    position: absolute !important;
+    overflow: visible !important;
+    left: 75% !important;
+    height: 20px !important;
+    bottom: 1% !important;
+    padding: 2px !important;
+  }
+
+/* fix-nowPlayingView */
+/* .main-nowPlayingView-nowPlayingGrid {
+    flex-direction: column !important;
+} */
+
+/* fix-sidebar */
+.BeautifulLyricsBackground:is(aside) .BeautifulLyricsBackground-Container {
+    filter: saturate(3) brightness(.25) !important;
+}
+
+.Root__right-sidebar:has(.main-nowPlayingView-section, canvas) .main-nowPlayingView-section {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+#BeautifulLyrics-CardView, .LoadingLyricsCard {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* fix-custom-app-stats */
+.page-header {
+    margin-top: 8% !important;
+}
+
+/* fix-widget */
+.GenericModal {
+    background-color: transparent !important;
+}
+
+/* fix-marketplace */
+.marketplace-card-type-heading {
+    margin: 3em 0 1em !important;
+}
+
+/* fix-light-theme-button */
+
+.Root__globalNav .main-topBar-buddyFeed {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* fix-dropDownMenu-color */
+.ellipsis-one-line, .standalone-ellipsis-one-line {
+    color: var(--spice-text) !important;
+}
+
+.os-scrollbar.os-scrollbar-handle-interactive .os-scrollbar-handle, .os-scrollbar.os-scrollbar-track-interactive .os-scrollbar-track {
+    border-radius: 50px !important;
+    width: 8px !important;
+}

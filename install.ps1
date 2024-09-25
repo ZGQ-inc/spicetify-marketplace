@@ -1,6 +1,6 @@
 # https://t.me/ZGQinc
 
-iex "& { $(iwr -useb 'https://raw.githubusercontent.com/SpotX-Official/spotx-official.github.io/main/run.ps1') } -new_theme"
+iex ""& { $(iwr -useb 'https://raw.githubusercontent.com/SpotX-Official/spotx-official.github.io/main/run.ps1') } -new_theme""
 
 iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1 | iex
 
@@ -24,5 +24,13 @@ Write-Output "success mv stats custom app."
 
 spicetify config custom_apps stats
 spicetify config custom_apps lyrics-plus
+spicetify config extensions bookmark.js
+spicetify config extensions fullAppDisplay.js
+spicetify config extensions keyboardShortcut.js
+spicetify config extensions loopyLoop.js
+spicetify config extensions popupLyrics.js
+spicetify config extensions shuffle+.js
+spicetify config extensions trashbin.js
+spicetify config extensions webnowplaying.js
 spicetify config sidebar_config 0
 spicetify apply
