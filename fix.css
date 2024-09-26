@@ -53,6 +53,7 @@
     color: var(--spice-text) !important;
 }
 
+/* better-scrollbar */
 .os-scrollbar.os-scrollbar-handle-interactive .os-scrollbar-handle, .os-scrollbar.os-scrollbar-track-interactive .os-scrollbar-track {
     border-radius: 50px !important;
     width: 8px !important;
