@@ -1,6 +1,12 @@
 # https://t.me/ZGQinc
 
-chcp 65001 > $null
+try {
+    [Console]::OutputEncoding = [System.Text.Encoding]::Default
+} catch {}
+
+if ($PSVersionTable.PSVersion.Major -lt 7) {
+    chcp 65001 > $null
+}
 
 Write-Output "安装 Spotify 并使用 SpotX 修补 ..."
 
@@ -16,17 +22,16 @@ iwr -useb https://github.com/ECE49595-Team-6/EnhancifyInstall/releases/latest/do
 
 $apiUrl = "https://api.github.com/repos/harbassan/spicetify-apps/releases"
 $downloadPath = "$env:APPDATA\spicetify\CustomApps"
-
-$response = Invoke-RestMethod -Uri $apiUrl
+$response = Invoke-RestMethod -Uri $apiUrl -UseBasicParsing
 $downloadUrl = $response.assets | ForEach-Object { $_.browser_download_url } | Where-Object { $_ -match "stats.*\.zip$" } | Select-Object -First 1
 
 if (-not $downloadUrl) {
-    Write-Error "Error. stats release not found."
+    Write-Error "错误：未找到 stats 的 release 下载链接。"
+    exit
 }
 
 $tempZipPath = "$env:TEMP\spicetify-stats.zip"
-
-Invoke-WebRequest -Uri $downloadUrl -OutFile $tempZipPath
+Invoke-WebRequest -Uri $downloadUrl -OutFile $tempZipPath -UseBasicParsing
 Expand-Archive -Path $tempZipPath -DestinationPath $downloadPath -Force
 Remove-Item -Path $tempZipPath
 
