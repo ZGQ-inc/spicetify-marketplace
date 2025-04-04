@@ -1,8 +1,8 @@
-﻿# https://t.me/ZGQinc
+# https://t.me/ZGQinc
 
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
-Write-Output "安装 Spotify 并使用 SpotX 修补 ..."
+'''Write-Output "安装 Spotify 并使用 SpotX 修补 ..." | Out-File -FilePath CON -Encoding UTF8'''
 
 iex "& { $(iwr -useb 'https://raw.githubusercontent.com/SpotX-Official/spotx-official.github.io/main/run.ps1') } -confirm_uninstall_ms_spoti -sp-over -new_theme -block_update_on -podcasts_on -dev -exp_spotify -adsections_off -cl 20000 -topsearchbar -newFullscreenMode -canvasHome -rightsidebarcolor -hide_col_icon_off"
 
