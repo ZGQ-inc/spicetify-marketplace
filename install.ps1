@@ -1,4 +1,4 @@
-# https://t.me/ZGQinc
+﻿# https://t.me/ZGQinc
 
 Write-Output "安装 Spotify 并使用 SpotX 修补 ..."
 
