@@ -58,3 +58,10 @@
     border-radius: 50px !important;
     width: 8px !important;
 }
+
+/* fix-topbar-button */
+.undefined {
+    all: inherit !important;
+    padding: revert !important;
+    margin-top: 50% !important;
+}
