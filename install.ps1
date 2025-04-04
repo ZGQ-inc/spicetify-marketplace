@@ -1,4 +1,6 @@
-﻿# https://t.me/ZGQinc
+# https://t.me/ZGQinc
+
+chcp 65001 > $null
 
 Write-Output "安装 Spotify 并使用 SpotX 修补 ..."
 
