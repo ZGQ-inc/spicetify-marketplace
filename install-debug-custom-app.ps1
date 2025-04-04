@@ -1,3 +1,5 @@
+iwr -useb https://github.com/ECE49595-Team-6/EnhancifyInstall/releases/latest/download/install.ps1 | iex
+
 $apiUrl = "https://api.github.com/repos/harbassan/spicetify-apps/releases"
 $downloadPath = "$env:APPDATA\spicetify\CustomApps"
 

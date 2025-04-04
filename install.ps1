@@ -2,13 +2,15 @@
 
 Write-Output "Installing Spotify modfied by SpotX..."
 
-iex "& { $(iwr -useb 'https://raw.githubusercontent.com/SpotX-Official/spotx-official.github.io/main/run.ps1') } -new_theme"
+iex "& { $(iwr -useb 'https://raw.githubusercontent.com/SpotX-Official/spotx-official.github.io/main/run.ps1') } -new_theme -block_update_on -podcasts_on -dev -exp_spotify -adsections_off -cl 20000 -topsearchbar"
 
-Write-Output "Installing Spicetify..."
+Write-Output "安装 Spicetify ..."
 
 iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1 | iex
 
-Write-Output "Installing custom-apps and extensions..."
+Write-Output "安装 custom-apps 和 extensions ..."
+
+iwr -useb https://github.com/ECE49595-Team-6/EnhancifyInstall/releases/latest/download/install.ps1 | iex
 
 $apiUrl = "https://api.github.com/repos/harbassan/spicetify-apps/releases"
 $downloadPath = "$env:APPDATA\spicetify\CustomApps"
