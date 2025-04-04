@@ -30,6 +30,9 @@
 .page-header {
     margin-top: 8% !important;
 }
+.main-topBar-background {
+    background: var(--background) !important;
+}
 
 /* fix-widget */
 .GenericModal {
