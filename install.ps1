@@ -1,4 +1,4 @@
-# https://t.me/ZGQinc
+﻿# https://t.me/ZGQinc
 
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
