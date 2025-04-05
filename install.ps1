@@ -1,6 +1,7 @@
 # https://t.me/ZGQinc
 
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$ProgressPreference = 'SilentlyContinue'
 
 Write-Output "安装 Spotify 并使用 SpotX 修补 ..."
 
@@ -12,11 +13,13 @@ iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-cli/master/insta
 
 Write-Output "安装 custom-apps 和 extensions ..."
 
+Write-Output "下载 Enhancify ..."
+
 # iwr -useb https://github.com/ECE49595-Team-6/EnhancifyInstall/releases/latest/download/install.ps1 | iex
 
 $apiUrl = "https://api.github.com/repos/ECE49595-Team-6/EnhancifyInstall/releases/latest"
 $downloadPath = "$env:APPDATA\spicetify\CustomApps\Enhancify"
-$response = Invoke-RestMethod -Uri $apiUrl -UseBasicParsing
+$response = Invoke-RestMethod -Uri $apiUrl
 $downloadUrl = $response.assets[0].browser_download_url
 
 if (-not $downloadUrl) {
@@ -25,9 +28,12 @@ if (-not $downloadUrl) {
 }
 
 $tempZipPath = "$env:TEMP\Enhancify.zip"
-Invoke-WebRequest -Uri $downloadUrl -OutFile $tempZipPath -UseBasicParsing
+Invoke-WebRequest -Uri $downloadUrl -OutFile $tempZipPath
+New-Item -ItemType Directory -Path $downloadPath -Force | Out-Null
 Expand-Archive -Path $tempZipPath -DestinationPath $downloadPath -Force
 Remove-Item -Path $tempZipPath
+
+Write-Output "下载 stats ..."
 
 $apiUrl = "https://api.github.com/repos/harbassan/spicetify-apps/releases"
 $downloadPath = "$env:APPDATA\spicetify\CustomApps"
@@ -44,16 +50,11 @@ Invoke-WebRequest -Uri $downloadUrl -OutFile $tempZipPath -UseBasicParsing
 Expand-Archive -Path $tempZipPath -DestinationPath $downloadPath -Force
 Remove-Item -Path $tempZipPath
 
-spicetify config custom_apps Enhancify
-spicetify config custom_apps stats
-spicetify config custom_apps lyrics-plus
-spicetify config extensions bookmark.js
-spicetify config extensions fullAppDisplay.js
-spicetify config extensions keyboardShortcut.js
-spicetify config extensions loopyLoop.js
-spicetify config extensions popupLyrics.js
-spicetify config extensions shuffle+.js
-spicetify config extensions trashbin.js
-spicetify config extensions webnowplaying.js
+Write-Output "配置 Spicetify ..."
+
+spicetify config custom_apps Enhancify,stats,lyrics-plus
+spicetify config extensions bookmark.js,fullAppDisplay.js,keyboardShortcut.js,loopyLoop.js,popupLyrics.js,shuffle+.js,trashbin.js,webnowplaying.js
 spicetify config sidebar_config 0
 spicetify apply
+
+Write-Output "安装完成。"
