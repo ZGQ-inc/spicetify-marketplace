@@ -45,10 +45,14 @@
 }
 
 /* fix-light-theme-button */
-
-.Root__globalNav .main-topBar-buddyFeed {
+/* .Root__globalNav .main-topBar-buddyFeed {
     background: transparent !important;
     border: none !important;
+} */
+.main-actionButtons * {
+    background: transparent !important;
+    border: none !important;
+    display: inline-block !important;
 }
 
 /* fix-dropDownMenu-color */
@@ -70,4 +74,30 @@
 }
 .custom-navlinks-scrollable_container {
     max-width: calc(100px* var(--max-custom-navlink-count) + 100px*(var(--max-custom-navlink-count) - 1)) !important;
+}
+
+/* fix-nowPlayingBar */
+.main-nowPlayingWidget-trackInfo {
+    display: flow !important;
+}
+.main-nowPlayingBar-nowPlayingBar {
+    height: auto !important;
+}
+.cover-art {
+    display: list-item !important;
+}
+.main-trackInfo-artists {
+    padding-left: inherit !important;
+}
+svg.Svg-img-icon-small {
+    fill: currentColor;
+    position: absolute !important;
+    top: 5px !important;
+    right: 8px !important;
+    left: 4px !important;
+}
+
+/* fix-tracklist */
+.main-trackList-curationButton {
+    padding: revert !important;
 }
