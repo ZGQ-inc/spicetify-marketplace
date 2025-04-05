@@ -52,8 +52,17 @@ Remove-Item -Path $tempZipPath
 
 Write-Output "配置 Spicetify ..."
 
-spicetify config custom_apps Enhancify,stats,lyrics-plus
-spicetify config extensions bookmark.js,fullAppDisplay.js,keyboardShortcut.js,loopyLoop.js,popupLyrics.js,shuffle+.js,trashbin.js,webnowplaying.js
+spicetify config custom_apps Enhancify
+spicetify config custom_apps stats
+spicetify config custom_apps lyrics-plus
+spicetify config extensions bookmark.js
+spicetify config extensions fullAppDisplay.js
+spicetify config extensions keyboardShortcut.js
+spicetify config extensions loopyLoop.js
+spicetify config extensions popupLyrics.js
+spicetify config extensions shuffle+.js
+spicetify config extensions trashbin.js
+spicetify config extensions webnowplaying.js
 spicetify config sidebar_config 0
 spicetify apply
 
