@@ -12,7 +12,22 @@ iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-cli/master/insta
 
 Write-Output "安装 custom-apps 和 extensions ..."
 
-iwr -useb https://github.com/ECE49595-Team-6/EnhancifyInstall/releases/latest/download/install.ps1 | iex
+# iwr -useb https://github.com/ECE49595-Team-6/EnhancifyInstall/releases/latest/download/install.ps1 | iex
+
+$apiUrl = "https://api.github.com/repos/ECE49595-Team-6/EnhancifyInstall/releases/latest"
+$downloadPath = "$env:APPDATA\spicetify\CustomApps\Enhancify"
+$response = Invoke-RestMethod -Uri $apiUrl -UseBasicParsing
+$downloadUrl = $response.assets[0].browser_download_url
+
+if (-not $downloadUrl) {
+    Write-Error "错误：未找到 Enhancify 的 release 下载链接。"
+    exit
+}
+
+$tempZipPath = "$env:TEMP\Enhancify.zip"
+Invoke-WebRequest -Uri $downloadUrl -OutFile $tempZipPath -UseBasicParsing
+Expand-Archive -Path $tempZipPath -DestinationPath $downloadPath -Force
+Remove-Item -Path $tempZipPath
 
 $apiUrl = "https://api.github.com/repos/harbassan/spicetify-apps/releases"
 $downloadPath = "$env:APPDATA\spicetify\CustomApps"
@@ -29,6 +44,7 @@ Invoke-WebRequest -Uri $downloadUrl -OutFile $tempZipPath -UseBasicParsing
 Expand-Archive -Path $tempZipPath -DestinationPath $downloadPath -Force
 Remove-Item -Path $tempZipPath
 
+spicetify config custom_apps Enhancify
 spicetify config custom_apps stats
 spicetify config custom_apps lyrics-plus
 spicetify config extensions bookmark.js
