@@ -67,11 +67,11 @@
 }
 
 /* fix-topbar-button */
-.undefined {
+/* .undefined {
     all: inherit !important;
     padding: revert !important;
     margin-top: 50% !important;
-}
+} */
 .custom-navlinks-scrollable_container {
     max-width: calc(100px* var(--max-custom-navlink-count) + 100px*(var(--max-custom-navlink-count) - 1)) !important;
 }
