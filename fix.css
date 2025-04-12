@@ -12,6 +12,9 @@
 /* .main-nowPlayingView-nowPlayingGrid {
     flex-direction: column !important;
 } */
+.spicy-dynamic-bg-in-this {
+    border-radius: 8px !important;
+}
 
 /* fix-sidebar */
 .BeautifulLyricsBackground:is(aside) .BeautifulLyricsBackground-Container {
@@ -75,6 +78,9 @@
 .custom-navlinks-scrollable_container {
     max-width: calc(100px* var(--max-custom-navlink-count) + 100px*(var(--max-custom-navlink-count) - 1)) !important;
 }
+.main-topBar-historyButtons, .main-globalNav-historyButtons {
+    gap: 12px !important;
+}
 
 /* fix-nowPlayingBar */
 .main-nowPlayingWidget-trackInfo {
@@ -90,14 +96,17 @@
     padding-left: inherit !important;
 }
 svg.Svg-img-icon-small {
-    fill: currentColor;
+    fill: currentColor !important;
     position: absolute !important;
     top: 5px !important;
     right: 8px !important;
     left: 4px !important;
 }
+.main-nowPlayingBar-right {
+    margin-right: 10px !important;
+}
 
 /* fix-tracklist */
-.main-trackList-curationButton {
-    padding: revert !important;
+.main-trackList-rowSectionEnd {
+    gap: inherit !important;
 }
