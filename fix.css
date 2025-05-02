@@ -15,9 +15,11 @@
 .spicy-dynamic-bg-in-this {
     border-radius: 8px !important;
 }
+/* .main-trackInfo-name {
+    margin-left: 4px !important; */
 
 /* fix-sidebar */
-.BeautifulLyricsBackground:is(aside) .BeautifulLyricsBackground-Container {
+/* .BeautifulLyricsBackground:is(aside) .BeautifulLyricsBackground-Container {
     filter: saturate(3) brightness(.25) !important;
 }
 
@@ -27,7 +29,7 @@
 
 #BeautifulLyrics-CardView, .LoadingLyricsCard {
     background-color: rgba(0, 0, 0, 0.5) !important;
-}
+} */
 
 /* fix-custom-app-stats */
 .page-header {
@@ -85,6 +87,7 @@
 /* fix-nowPlayingBar */
 .main-nowPlayingWidget-trackInfo {
     display: flow !important;
+    width: max-content !important;
 }
 .main-nowPlayingBar-nowPlayingBar {
     height: auto !important;
@@ -93,7 +96,7 @@
     display: list-item !important;
 }
 .main-trackInfo-artists {
-    padding-left: inherit !important;
+    padding-left: 2px !important;
 }
 svg.Svg-img-icon-small {
     fill: currentColor !important;
@@ -104,6 +107,12 @@ svg.Svg-img-icon-small {
 }
 .main-nowPlayingBar-right {
     margin-right: 10px !important;
+}
+#upcomingSongDiv {
+    padding-left: 2px !important;
+}
+#upcomingSongTitle {
+    margin-left: 2px;
 }
 
 /* fix-tracklist */
