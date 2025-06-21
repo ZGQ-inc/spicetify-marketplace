@@ -65,15 +65,25 @@ if ($downloadUrl -match "stats-v1\.1\.2/") {
 
     $target = "$env:APPDATA\spicetify\CustomApps\stats\index.js"
     $backup = "$target.bak"
-    Copy-Item -Path $target -Destination $backup -Force
-    Write-Output "create index.js.bak"
-    $content = Get-Content -Path $target -Raw
-    $original = 'const resizeHost = document.querySelector(".Root__main-view .os-resize-observer-host") ?? document.querySelector(".Root__main-view .os-size-observer");'
-    $replace = 'const resizeHost = document.querySelector(".Root__main-view .os-resize-observer-host") ?? document.querySelector(".Root__main-view .os-size-observer") ?? document.querySelector(".Root__main-view");'
 
-    $newContent = $content -replace [regex]::Escape($original), [System.Text.RegularExpressions.Regex]::Escape($replace)
-    [System.IO.File]::WriteAllText($target, $newContent, [System.Text.Encoding]::UTF8)
-    Write-Output "Replace completed."
+    if (Test-Path $backup) {
+        Write-Output "index.js already patched, skip."
+    }
+    else {
+        Copy-Item -Path $target -Destination $backup -Force
+        Write-Output "index.js.bak created."
+
+        $content = Get-Content -Path $target -Raw
+        $original = 'const resizeHost = document.querySelector(".Root__main-view .os-resize-observer-host") ?? document.querySelector(".Root__main-view .os-size-observer");'
+        $replacement = 'const resizeHost = document.querySelector(".Root__main-view .os-resize-observer-host") ?? document.querySelector(".Root__main-view .os-size-observer") ?? document.querySelector(".Root__main-view");'
+
+        $newContent = $content -replace [regex]::Escape($original), $replacement
+        [System.IO.File]::WriteAllText($target, $newContent, [System.Text.Encoding]::UTF8)
+        Write-Output "Replace complete."
+
+        spicetify config custom_apps stats-
+        spicetify apply
+    }
 }
 else {
     Write-Output "Stats version is not 1.1.2, skip."
