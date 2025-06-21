@@ -95,9 +95,9 @@
 .cover-art {
     display: list-item !important;
 }
-.main-trackInfo-artists {
+/* .main-trackInfo-artists {
     padding-left: 2px !important;
-}
+} */
 svg.Svg-img-icon-small {
     fill: currentColor !important;
     position: absolute !important;
@@ -113,6 +113,9 @@ svg.Svg-img-icon-small {
 }
 #upcomingSongTitle {
     margin-left: 2px;
+}
+.main-trackInfo-enhanced {
+    display: block !important;
 }
 
 /* fix-tracklist */
