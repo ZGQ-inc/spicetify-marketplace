@@ -10,7 +10,19 @@
 $ProgressPreference = 'SilentlyContinue'
 
 Write-Output "Installing Spotify and patching with SpotX..."
-iex "& { $(iwr -useb 'https://raw.githubusercontent.com/SpotX-Official/spotx-official.github.io/main/run.ps1') } -confirm_uninstall_ms_spoti -sp-over -new_theme -block_update_on -podcasts_on -dev -exp_spotify -adsections_off -cl 20000 -topsearchbar -newFullscreenMode -canvasHome -rightsidebarcolor -hide_col_icon_off"
+# iex "& { $(iwr -useb 'https://raw.githubusercontent.com/SpotX-Official/spotx-official.github.io/main/run.ps1') } -confirm_uninstall_ms_spoti -sp-over -new_theme -block_update_on -podcasts_on -dev -exp_spotify -adsections_off -cl 20000 -topsearchbar -newFullscreenMode -canvasHome -rightsidebarcolor -hide_col_icon_off"
+
+$spotxUrl = "https://raw.githubusercontent.com/SpotX-Official/spotx-official.github.io/main/run.ps1"
+$spotxLocalPath = Join-Path $env:TEMP "run_spotx.ps1"
+Invoke-WebRequest -Uri $spotxUrl -OutFile $spotxLocalPath -UseBasicParsing
+
+(Get-Content -Raw -Path $spotxLocalPath) -replace '(?s)if\s*\(\$test_js\)\s*\{(.*?)(Write-Host\s*\(\$lang\)\.StopScript\s*\n)?(Pause\s*\n)?(Exit\s*)?\}', {
+    param($m)
+    $body = $m.Groups[1].Value
+    "if (`$test_js) {`n$body`n}"
+} | Set-Content -Path $spotxLocalPath -Encoding UTF8
+
+& $spotxLocalPath -confirm_uninstall_ms_spoti -sp-over -new_theme -block_update_on -podcasts_on -dev -exp_spotify -adsections_off -cl 20000 -topsearchbar -newFullscreenMode -canvasHome -rightsidebarcolor -hide_col_icon_off
 
 Write-Output "Installing Spicetify..."
 iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1 | iex
