@@ -98,13 +98,13 @@
 /* .main-trackInfo-artists {
     padding-left: 2px !important;
 } */
-svg.Svg-img-icon-small {
+/* svg.Svg-img-icon-small {
     fill: currentColor !important;
     position: absolute !important;
     top: 5px !important;
     right: 8px !important;
     left: 4px !important;
-}
+} */
 .main-nowPlayingBar-right {
     margin-right: 10px !important;
 }
