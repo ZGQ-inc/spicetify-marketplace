@@ -110,6 +110,7 @@
 }
 #upcomingSongDiv {
     padding-left: 2px !important;
+    bottom: 36px !important;
 }
 #upcomingSongTitle {
     margin-left: 2px;
@@ -121,4 +122,9 @@
 /* fix-tracklist */
 .main-trackList-rowSectionEnd {
     gap: inherit !important;
+}
+
+/* useless-button */
+button#main-topBar-moon-button {
+    display: none !important;
 }
