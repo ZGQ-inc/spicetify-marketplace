@@ -99,4 +99,4 @@ spicetify apply
 
 rm -rf "$TMP_DIR"
 
-echo "\n安装完成。"
+echo "安装完成。"
