@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # https://t.me/ZGQinc
 
 set -e
