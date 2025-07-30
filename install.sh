@@ -12,6 +12,7 @@ sudo apt-get update
 sudo apt-get install -y spotify-client
 
 echo "安装 SpotX..."
+spicetify restore
 (curl -sSL https://raw.githubusercontent.com/SpotX-Official/SpotX-Bash/main/spotx.sh | bash -s -- -d -e -f) || true
 
 echo "安装 Spicetify..."
@@ -58,6 +59,7 @@ if [[ "$stats_url" =~ stats-v1\.1\.2/ ]]; then
 fi
 
 echo "正在配置 Spicetify..."
+spicetify restore backup
 spicetify backup apply
 spicetify config custom_apps Enhancify
 spicetify config custom_apps stats

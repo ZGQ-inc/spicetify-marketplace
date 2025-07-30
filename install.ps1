@@ -90,6 +90,7 @@ else {
 }
 
 Write-Output "Configuring Spicetify..."
+spicetify restore backup
 spicetify backup apply
 spicetify config custom_apps Enhancify
 spicetify config custom_apps stats
