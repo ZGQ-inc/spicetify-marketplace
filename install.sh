@@ -11,6 +11,30 @@ echo "安装 Spotify..."
 sudo apt-get update
 sudo apt-get install -y spotify-client
 
+echo "修改权限..."
+linux_search_path() {
+  local paths=("/opt" "/usr/share" "/var/lib/flatpak" "$HOME/.local/share" "/")
+  for path in "${paths[@]}"; do
+    installPath=$(find "${path}" -type f -path "*/spotify*Apps/*" -not -path "*snap*" -name "xpui.spa" -print -quit 2>/dev/null | rev | cut -d/ -f3- | rev)
+    if [[ -n "${installPath}" ]]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+if linux_search_path; then
+  echo -e "\n找到 Spotify 安装路径:"
+  echo " ${installPath}"
+  sudo chmod a+wr "${installPath}"
+  sudo chmod a+wr "${installPath}/Apps" -R
+  echo "权限修改完成。"
+else
+  echo -e "\n未能找到 Spotify 安装路径。"
+  echo "请确认 Spotify 是否已安装（非 Snap 版本）。"
+  exit 1
+fi
+
 echo "安装 SpotX..."
 spicetify restore
 (curl -sSL https://raw.githubusercontent.com/SpotX-Official/SpotX-Bash/main/spotx.sh | bash -s -- -d -e -f) || true
