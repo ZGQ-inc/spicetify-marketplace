@@ -12,10 +12,10 @@ sudo apt-get update
 sudo apt-get install -y spotify-client
 
 echo "安装 SpotX..."
-(curl -sSL https://raw.githubusercontent.com/SpotX-Official/SpotX-Bash/main/spotx.sh | sed '/^\s*exit 0/d' | bash -s - -d -e) || true
+(curl -sSL https://raw.githubusercontent.com/SpotX-Official/SpotX-Bash/main/spotx.sh | bash -s - -d -e) || true
 
 echo "安装 Spicetify..."
-(curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sed '/^\s*exit 0/d' | sh) || true
+(curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh) || true
 
 echo "安装 Custom Apps..."
 
