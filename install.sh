@@ -58,6 +58,7 @@ if [[ "$stats_url" =~ stats-v1\.1\.2/ ]]; then
 fi
 
 echo "正在配置 Spicetify..."
+spicetify backup apply
 spicetify config custom_apps Enhancify
 spicetify config custom_apps stats
 spicetify config custom_apps lyrics-plus
