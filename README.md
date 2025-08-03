@@ -6,6 +6,12 @@
 iwr -useb https://spicetify.zgqinc.gq/install.ps1 | iex
 ```
 
+### Install(Linux)
+
+```bash
+curl -fsSL https://spicetify.zgqinc.gq/install.sh | bash
+```
+
 ### Marketplace backup
 
 https://spicetify.zgqinc.gq/Marketplace-backup.txt
