@@ -14,7 +14,7 @@ curl -fsSL https://spicetify.zgqinc.gq/install.sh | bash
 
 ### Marketplace backup
 
-https://spicetify.zgqinc.gq/Marketplace-backup.txt
+https://spicetify.zgqinc.gq/Marketplace-backup.json
 
 ### Some CSS fix by me
 
