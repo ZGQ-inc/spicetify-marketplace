@@ -128,3 +128,8 @@
 button#main-topBar-moon-button {
     display: none !important;
 }
+
+/* fix-homescreen */
+.main-home-homeHeader {
+    height: 56px !important;
+}
