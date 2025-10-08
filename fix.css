@@ -128,6 +128,14 @@
 button#main-topBar-moon-button {
     display: none !important;
 }
+button.main-addButton-button.control-button.control-button-heart {
+    display: inline-flex !important;
+    background-color: transparent !important;
+    border: transparent !important;
+}
+button.Button-sc-1dqy6lx-0.Button-switch-buttonTertiary-textSubdued-small-iconOnly-isUsingKeyboard-useBrowserDefaultFocusStyle-condensed {
+    display: none !important;
+}
 
 /* fix-homescreen */
 .main-home-homeHeader {
