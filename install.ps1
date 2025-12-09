@@ -24,8 +24,6 @@ Invoke-WebRequest -Uri $spotxUrl -OutFile $spotxLocalPath -UseBasicParsing
 
 & $spotxLocalPath -confirm_uninstall_ms_spoti -sp-over -new_theme -block_update_on -podcasts_on -dev -exp_spotify -adsections_off -cl 20000 -topsearchbar -newFullscreenMode -canvasHome -rightsidebarcolor -hide_col_icon_off
 
-# & $spotxLocalPath -confirm_uninstall_ms_spoti -sp-over -new_theme -block_update_on -podcasts_on -dev -exp_spotify -adsections_off -cl 20000 -topsearchbar -newFullscreenMode -canvasHome -rightsidebarcolor -hide_col_icon_off -version 1.2.77.358.g4339a634-545
-
 Write-Output "Installing Spicetify..."
 iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1 | iex
 
