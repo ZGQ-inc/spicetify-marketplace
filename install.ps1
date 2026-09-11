@@ -35,7 +35,7 @@ Invoke-Expression $spicetifyScript
 
 # Ensure spicetify is immediately available in current process PATH
 $spicetifyBin = "$env:LOCALAPPDATA\spicetify"
-if (Test-Path $spicetifyBin -and ($env:PATH -notmatch [regex]::Escape($spicetifyBin))) {
+if ((Test-Path $spicetifyBin) -and ($env:PATH -notmatch [regex]::Escape($spicetifyBin))) {
     $env:PATH = "$spicetifyBin;$env:PATH"
 }
 
