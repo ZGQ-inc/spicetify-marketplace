@@ -155,71 +155,9 @@ try {
     Write-Warning "Marketplace installer prompt: $_"
 }
 
-# 4. Install Curated Custom Apps & Extensions
-Write-Host "[4/5] Installing popular custom apps and extensions..." -ForegroundColor Yellow
-
-# 4a. Enhancify
-try {
-    Write-Host "  -> Downloading Enhancify..." -ForegroundColor Cyan
-    $apiUrl = "https://api.github.com/repos/ECE49595-Team-6/EnhancifyInstall/releases/latest"
-    $downloadPath = "$env:APPDATA\spicetify\CustomApps\Enhancify"
-    $response = Invoke-RestMethod -Uri $apiUrl
-    $downloadUrl = $response.assets[0].browser_download_url
-    if ($downloadUrl) {
-        $tempZipPath = "$env:TEMP\Enhancify.zip"
-        Invoke-WebRequest -Uri $downloadUrl -OutFile $tempZipPath
-        New-Item -ItemType Directory -Path $downloadPath -Force | Out-Null
-        Expand-Archive -Path $tempZipPath -DestinationPath $downloadPath -Force
-        Remove-Item -Path $tempZipPath -Force -ErrorAction SilentlyContinue
-    }
-} catch {
-    Write-Warning "Enhancify download skipped: $_"
-}
-
-# 4b. Stats
-try {
-    Write-Host "  -> Downloading stats..." -ForegroundColor Cyan
-    $apiUrl = "https://api.github.com/repos/harbassan/spicetify-apps/releases"
-    $downloadPath = "$env:APPDATA\spicetify\CustomApps"
-    $response = Invoke-RestMethod -Uri $apiUrl -UseBasicParsing
-    $downloadUrl = $response.assets | ForEach-Object { $_.browser_download_url } | Where-Object { $_ -match "stats.*\.zip$" } | Select-Object -First 1
-    if ($downloadUrl) {
-        $tempZipPath = "$env:TEMP\spicetify-stats.zip"
-        Invoke-WebRequest -Uri $downloadUrl -OutFile $tempZipPath -UseBasicParsing
-        Expand-Archive -Path $tempZipPath -DestinationPath $downloadPath -Force
-        Remove-Item -Path $tempZipPath -Force -ErrorAction SilentlyContinue
-
-        # Patch stats 1.1.2 UI resize observer
-        $target = "$env:APPDATA\spicetify\CustomApps\stats\index.js"
-        if (Test-Path $target) {
-            $content = Get-Content -Path $target -Raw
-            $original = 'const resizeHost = document.querySelector(".Root__main-view .os-resize-observer-host") ?? document.querySelector(".Root__main-view .os-size-observer");'
-            $replacement = 'const resizeHost = document.querySelector(".Root__main-view .os-resize-observer-host") ?? document.querySelector(".Root__main-view .os-size-observer") ?? document.querySelector(".Root__main-view");'
-            $newContent = $content -replace [regex]::Escape($original), $replacement
-            [System.IO.File]::WriteAllText($target, $newContent, [System.Text.Encoding]::UTF8)
-        }
-    }
-} catch {
-    Write-Warning "Stats app download skipped: $_"
-}
-
-# 4c. Configure Spicetify and Apply
-Write-Host "  -> Applying Spicetify configuration..." -ForegroundColor Cyan
-spicetify restore backup
-spicetify backup apply
+# 4. Apply Spicetify Configuration with Marketplace
+Write-Host "[4/5] Applying Spicetify configuration with Marketplace..." -ForegroundColor Yellow
 spicetify config custom_apps marketplace
-spicetify config custom_apps Enhancify
-spicetify config custom_apps stats
-spicetify config custom_apps lyrics-plus
-spicetify config extensions bookmark.js
-spicetify config extensions fullAppDisplay.js
-spicetify config extensions keyboardShortcut.js
-spicetify config extensions loopyLoop.js
-spicetify config extensions popupLyrics.js
-spicetify config extensions shuffle+.js
-spicetify config extensions trashbin.js
-spicetify config extensions webnowplaying.js
-spicetify config sidebar_config 0
 spicetify apply
 
 # 5. Apply SpotX + Spicetify Unified Compatibility Hotfix (Embedded)

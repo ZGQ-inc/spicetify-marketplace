@@ -127,52 +127,9 @@ grant_permissions
 echo -e "${CYAN}  -> Installing Spicetify Marketplace...${NC}"
 (yes Y | curl -fsSL https://raw.githubusercontent.com/spicetify/marketplace/main/resources/install.sh | sh) || true
 
-# 6. Install Curated Custom Apps & Extensions
-echo -e "${YELLOW}[6/7] Downloading curated custom apps and extensions...${NC}"
-APP_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/spicetify/CustomApps"
-EXT_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/spicetify/Extensions"
-mkdir -p "$APP_PATH" "$EXT_PATH"
-TMP_DIR=$(mktemp -d)
-
-# Enhancify
-echo -e "${CYAN}  -> Downloading Enhancify...${NC}"
-enhancify_url=$(curl -s https://api.github.com/repos/ECE49595-Team-6/EnhancifyInstall/releases/latest | grep browser_download_url | grep zip | cut -d '"' -f 4 || true)
-if [[ -n "$enhancify_url" ]]; then
-    mkdir -p "$APP_PATH/Enhancify"
-    curl -L "$enhancify_url" -o "$TMP_DIR/enhancify.zip"
-    unzip -qo "$TMP_DIR/enhancify.zip" -d "$APP_PATH/Enhancify"
-fi
-
-# Stats (with UI observer patch)
-echo -e "${CYAN}  -> Downloading Stats...${NC}"
-stats_url=$(curl -s https://api.github.com/repos/harbassan/spicetify-apps/releases | grep browser_download_url | grep "stats.*\.zip" | head -n1 | cut -d '"' -f 4 || true)
-if [[ -n "$stats_url" ]]; then
-    curl -L "$stats_url" -o "$TMP_DIR/stats.zip"
-    unzip -qo "$TMP_DIR/stats.zip" -d "$APP_PATH"
-    target="$APP_PATH/stats/index.js"
-    if [[ -f "$target" ]]; then
-        sed -i 's/const resizeHost = document.querySelector(.Root__main-view .os-resize-observer-host).*;/const resizeHost = document.querySelector(".Root__main-view .os-resize-observer-host") ?? document.querySelector(".Root__main-view .os-size-observer") ?? document.querySelector(".Root__main-view");/' "$target"
-    fi
-fi
-rm -rf "$TMP_DIR"
-
-# Configure Spicetify
-echo -e "${CYAN}  -> Configuring Spicetify options...${NC}"
-spicetify restore backup || true
-spicetify backup apply || true
+# 6. Configure Spicetify with Marketplace
+echo -e "${YELLOW}[6/7] Configuring Spicetify with Marketplace...${NC}"
 spicetify config custom_apps marketplace || true
-spicetify config custom_apps Enhancify || true
-spicetify config custom_apps stats || true
-spicetify config custom_apps lyrics-plus || true
-spicetify config extensions bookmark.js || true
-spicetify config extensions fullAppDisplay.js || true
-spicetify config extensions keyboardShortcut.js || true
-spicetify config extensions loopyLoop.js || true
-spicetify config extensions popupLyrics.js || true
-spicetify config extensions shuffle+.js || true
-spicetify config extensions trashbin.js || true
-spicetify config extensions webnowplaying.js || true
-spicetify config sidebar_config 0 || true
 spicetify apply || true
 
 # 7. Apply Unified Compatibility Hotfix (Embedded)
