@@ -25,9 +25,13 @@ $spotxContent | Set-Content -Path $spotxLocalPath -Encoding UTF8
 
 & $spotxLocalPath -confirm_uninstall_ms_spoti -sp-over -new_theme -block_update_on -podcasts_on -dev -exp_spotify -adsections_off -cl 20000 -topsearchbar -newFullscreenMode -canvasHome -rightsidebarcolor -hide_col_icon_off -no_pause -defender_exclusions_off
 
-# 2. Install Spicetify CLI
+# 2. Install Spicetify CLI (bypassing internal Marketplace prompt so Spotify can be initialized first)
 Write-Host "[2/5] Installing Spicetify CLI..." -ForegroundColor Yellow
-iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1 | iex
+$spicetifyCliUrl = "https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1"
+$spicetifyScript = (Invoke-WebRequest -Uri $spicetifyCliUrl -UseBasicParsing).Content
+# Bypass internal Marketplace prompt inside Spicetify CLI installer
+$spicetifyScript = $spicetifyScript -replace '(?s)#region Marketplace.*?#endregion Marketplace', '# Marketplace prompt bypassed; handled in next step'
+Invoke-Expression $spicetifyScript
 
 # Ensure spicetify is immediately available in current process PATH
 $spicetifyBin = "$env:LOCALAPPDATA\spicetify"

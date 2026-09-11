@@ -54,9 +54,10 @@ fi
 echo -e "${YELLOW}[3/7] Installing SpotX-Bash...${NC}"
 (curl -sSL https://raw.githubusercontent.com/SpotX-Official/SpotX-Bash/main/spotx.sh | bash -s -- --noninteractive -d -e -f) || true
 
-# 4. Install Spicetify CLI
+# 4. Install Spicetify CLI (bypassing internal Marketplace prompt so Spotify can be initialized first)
 echo -e "${YELLOW}[4/7] Installing Spicetify CLI...${NC}"
-(curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh) || true
+sp_cli_sh=$(curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh)
+echo "$sp_cli_sh" | sed '/Do you want to install spicetify Marketplace/,$d' | sh || true
 export PATH="$HOME/.spicetify:$PATH"
 
 # 5. Pre-launch Spotify, auto-grant local network permission, and install Marketplace
