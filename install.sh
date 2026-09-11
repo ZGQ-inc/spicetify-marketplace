@@ -263,7 +263,5 @@ if command -v spotify >/dev/null 2>&1; then
     spotify >/dev/null 2>&1 &
 fi
 
-echo -e "${GREEN}================================================================${NC}"
 echo -e "${GREEN} Linux installation and compatibility hotfix finished!         ${NC}"
 echo -e "${GREEN} Enjoy Spotify with SpotX adblocking and Spicetify custom apps! ${NC}"
-echo -e "${GREEN}================================================================${NC}"

@@ -5,25 +5,24 @@
 
 set -e
 
-# ANSI Color Codes
 GREEN='\033[0;32m'
 CYAN='\033[0;36m'
 YELLOW='\033[1;33m'
 RED='\033[0;31m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
 echo -e "${CYAN} SpotX + Spicetify Unified Compatibility Hotfix (Linux v2.1)   ${NC}"
 echo -e "${CYAN} Supports Spotify 1.2.x (Webpack) & 1.3.x+ (Rspack)             ${NC}"
 echo -e "${CYAN} GitHub: https://github.com/ZGQ-inc/spotx-spicetify-fusion            ${NC}"
 
-# 1. Terminate running Spotify processes
+# Terminate running Spotify processes
 if pgrep -x "spotify" > /dev/null; then
     echo -e "${YELLOW}[*] Closing running Spotify processes...${NC}"
     killall -9 spotify 2>/dev/null || true
     sleep 1
 fi
 
-# 2. Locate Spotify and Spicetify directories on Linux
+# Locate Spotify and Spicetify directories on Linux
 SPICETIFY_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/spicetify"
 THEMED_XPUI_DIR="$SPICETIFY_DIR/Extracted/Themed/xpui"
 RAW_XPUI_DIR="$SPICETIFY_DIR/Extracted/Raw/xpui"

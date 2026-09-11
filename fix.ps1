@@ -44,7 +44,7 @@ Write-Log " SpotX + Spicetify Unified Compatibility Hotfix (v2.1)" "Cyan"
 Write-Log " Supports Spotify 1.2.x (Webpack) & 1.3.x+ (Rspack)" "Cyan"
 Write-Log " GitHub: https://github.com/ZGQ-inc/spotx-spicetify-fusion" "Cyan"
 
-# 1. Terminate running Spotify processes
+# Terminate running Spotify processes
 $spotifyProcs = Get-Process -Name "Spotify" -ErrorAction SilentlyContinue
 if ($spotifyProcs) {
     Write-Log "[*] Closing running Spotify process..." "Yellow"
@@ -52,7 +52,7 @@ if ($spotifyProcs) {
     Start-Sleep -Milliseconds 800
 }
 
-# 2. Locate Spotify & Spicetify directories
+# Locate Spotify & Spicetify directories
 $SpotifyDir = Join-Path $env:APPDATA "Spotify"
 if (-not (Test-Path $SpotifyDir)) {
     $SpotifyDir = Join-Path $env:LOCALAPPDATA "Spotify"
@@ -74,7 +74,7 @@ if (-not (Test-Path $xpuiJs)) {
     exit 1
 }
 
-# 3. Detect Spotify version and architecture
+# Detect Spotify version and architecture
 $detectedVersion = "unknown"
 if (Test-Path $SpotifyExe) {
     try {

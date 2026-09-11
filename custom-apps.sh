@@ -25,8 +25,7 @@ EXT_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/spicetify/Extensions"
 mkdir -p "$APP_PATH" "$EXT_PATH"
 TMP_DIR=$(mktemp -d)
 
-# 1. Enhancify
-echo -e "${YELLOW}[1/4] Installing Enhancify...${NC}"
+echo -e "${YELLOW}Installing Enhancify...${NC}"
 enhancify_url=$(curl -s https://api.github.com/repos/ECE49595-Team-6/EnhancifyInstall/releases/latest | grep browser_download_url | grep zip | cut -d '"' -f 4 || true)
 if [[ -n "$enhancify_url" ]]; then
     mkdir -p "$APP_PATH/Enhancify"
@@ -35,8 +34,7 @@ if [[ -n "$enhancify_url" ]]; then
     echo -e "${GREEN}  [+] Enhancify installed successfully.${NC}"
 fi
 
-# 2. Stats
-echo -e "${YELLOW}[2/4] Installing Stats...${NC}"
+echo -e "${YELLOW}Installing Stats...${NC}"
 stats_url=$(curl -s https://api.github.com/repos/harbassan/spicetify-apps/releases | grep browser_download_url | grep "stats.*\.zip" | head -n1 | cut -d '"' -f 4 || true)
 if [[ -n "$stats_url" ]]; then
     curl -L "$stats_url" -o "$TMP_DIR/stats.zip"
@@ -50,15 +48,13 @@ if [[ -n "$stats_url" ]]; then
 fi
 rm -rf "$TMP_DIR"
 
-# 3. Configure Spicetify and Apply
-echo -e "${YELLOW}[3/4] Configuring Spicetify custom apps and extensions...${NC}"
+echo -e "${YELLOW}Configuring Spicetify custom apps and extensions...${NC}"
 spicetify config custom_apps Enhancify stats lyrics-plus || true
 spicetify config extensions bookmark.js fullAppDisplay.js keyboardShortcut.js loopyLoop.js popupLyrics.js shuffle+.js trashbin.js webnowplaying.js || true
 spicetify config sidebar_config 0 || true
 spicetify apply || true
 
-# 4. Patch Rspack chunk map and route push chains
-echo -e "${YELLOW}[4/4] Applying Rspack compatibility patches for custom apps...${NC}"
+echo -e "${YELLOW}Applying Rspack compatibility patches for custom apps...${NC}"
 
 SPOTIFY_DIR=""
 for candidate in \

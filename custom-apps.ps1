@@ -22,7 +22,7 @@ if (-not (Test-Path $customAppsDir)) {
     New-Item -ItemType Directory -Path $customAppsDir -Force | Out-Null
 }
 
-Write-Host "[1/4] Installing Enhancify..." -ForegroundColor Yellow
+Write-Host "Installing Enhancify..." -ForegroundColor Yellow
 try {
     $apiUrl = "https://api.github.com/repos/ECE49595-Team-6/EnhancifyInstall/releases/latest"
     $downloadPath = "$customAppsDir\Enhancify"
@@ -40,7 +40,7 @@ try {
     Write-Warning "Enhancify download failed: $_"
 }
 
-Write-Host "[2/4] Installing Stats..." -ForegroundColor Yellow
+Write-Host "Installing Stats..." -ForegroundColor Yellow
 try {
     $apiUrl = "https://api.github.com/repos/harbassan/spicetify-apps/releases"
     $response = Invoke-RestMethod -Uri $apiUrl -UseBasicParsing
@@ -65,13 +65,13 @@ try {
 } catch {
     Write-Warning "Stats download failed: $_"
 }
-Write-Host "[3/4] Configuring Spicetify custom apps and extensions..." -ForegroundColor Yellow
+Write-Host "Configuring Spicetify custom apps and extensions..." -ForegroundColor Yellow
 spicetify config custom_apps Enhancify stats lyrics-plus
 spicetify config extensions bookmark.js fullAppDisplay.js keyboardShortcut.js loopyLoop.js popupLyrics.js shuffle+.js trashbin.js webnowplaying.js
 spicetify config sidebar_config 0
 spicetify apply
 
-Write-Host "[4/4] Applying Rspack compatibility patches for custom apps..." -ForegroundColor Yellow
+Write-Host "Applying Rspack compatibility patches for custom apps..." -ForegroundColor Yellow
 
 if (Test-Path $xpuiJs) {
     $xpuiContent = [System.IO.File]::ReadAllText($xpuiJs, [System.Text.Encoding]::UTF8)
